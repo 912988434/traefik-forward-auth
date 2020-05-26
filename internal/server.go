@@ -189,7 +189,8 @@ func (s *Server) SignOutHandler() http.HandlerFunc {
 		// Clear cookie
 		http.SetCookie(w, ClearCookie(r))
 
-		s.logger(r, "default", "Handling sign out").Infof("Signed out user")
+		logger := s.logger(r, "SignOut", "default", "Handling sign out")
+		logger.Info("Signed out user")
 
 		http.Error(w, "You have been signed out", 401)
 	}
